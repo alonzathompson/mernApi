@@ -1,0 +1,34 @@
+
+<div class="mapcontainer">
+  <div id="map"></div>
+  <div class="list text-center">
+    <h2>Credited users</h2>
+  </div>
+</div>
+
+<script>
+  function initMap(){
+    const options = {
+      zoom: 8,
+      center: {lat:38.8851, lng:-76.9158}
+    }
+    const map = new google.maps.Map(document.getElementById('map'), options);
+
+    //add Marker
+    const marker = new google.maps.Marker({
+      position:{lat: 37.6545, lng: -76.7484},
+      map: map
+    });
+
+    const infoWindow = new google.maps.InfoWindow({
+      content: '<li>Testing my work</li>'
+    })
+
+    marker.addListener('click', ()=>{
+      infoWindow.open(map, marker);
+    })
+  }
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3DweOVJLcT91VWuMeK4UhsA9l4bukNRU&callback=initMap">
+</script>

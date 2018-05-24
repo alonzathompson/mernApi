@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Free Web tutorials">
+  <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+  <meta name="author" content="Alonza Thompson">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css.map" type="application/json">
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Document</title>
+
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+    }
+
+    .mapcontainer{
+      height: 100vh;
+      width: 100vw;
+      display:flex;
+      flex-grow: 100vh;
+    }
+    #map{
+      flex-basis: 75%;
+    }
+
+    .list{
+      flex-basis: 25%;
+      background-color: rgba(45,45,45,0.5);
+    }
+  </style>
+</head>
+<body>
+  {{{body}}}
+  <script type="text/javascript">
+
+    const theToken = window.localStorage.getItem('token');
+    const myUri = 'http://localhost:3731';
+
+    let h = new Headers({
+      'accept': "application/json",
+      'Content-Type': "text/plain",
+      'authorization': theToken
+    });
+
+    console.log(theToken);
+
+    let req = new Request(myUri,{
+        method: 'Get',
+        headers:h,
+        mode:'cors',
+        credentials: 'include'
+    });
+
+    fetch(myUri,{
+      method: "GET",
+      headers: h,
+      mode: 'cors',
+      credentials: 'include'
+    })
+      .then(function(response){
+        if(response.ok){
+          return response.json;
+        } else {
+          console.log('not working correctly');
+        }
+      }).then(function(data){
+        console.log(data);
+      })
+  </script>
+</body>
+</html>

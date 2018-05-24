@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>Products</h1>
+  <script type="text/javascript" charset="utf-8">
+  fetch('http://localhost:3731/users/signin', {
+    method: 'GET',
+    headers: {
+      Authorization: window.localStorage.getItem('token');
+    },
+    body: JSON.stringify(data)
+  }).then(function(response){
+     response.json().then(function(data){
+       console.log(data);
+       if (data) {
+         console.log('success :' + response);
+         console.log(data);
+         window.location.href = 'http://localhost:3731/'
+       } else {
+          console.log('error: '+response);
+       }
+     });
+  }).catch(function(err){
+    console.log(err);
+  })
+  </script>
+</div>

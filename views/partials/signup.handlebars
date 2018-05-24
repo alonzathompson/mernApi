@@ -1,0 +1,53 @@
+<div class="container py-3">
+  <div class="jumbotron">
+    <h1>Register</h1>
+  </div>
+  <form >
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+
+    <button class="btn btn-primary" id="bn">Submit</button>
+  </form>
+  <script type="text/javascript">
+  function clicker(e){
+    e.preventDefault();
+    const em = document.getElementById('exampleInputEmail1').value;
+    const pass = document.getElementById('exampleInputPassword1').value;
+    const data = {
+      email: em,
+      password: pass
+    }
+
+    console.log('working', data, em, pass);
+
+    fetch('http://localhost:3731/users/signup', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data),
+    }).then(function(response){
+       response.json().then(function(data){
+         console.log(data);
+         if (data) {
+           console.log('success :' + response);
+           window.localStorage.setItem('token', data.token);;
+           window.location.href = 'http://localhost:3731/';
+         } else {
+            console.log('error: '+response);
+         }
+       });
+    }).catch(function(err){
+      console.log(err);
+    })
+  }
+  bn.addEventListener('click', clicker);
+  </script>
+</div>
